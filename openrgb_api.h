@@ -3,9 +3,11 @@
 #include <Windows.h>
 #include <vector>
 
+#include "RGBController.h"
+
 #define OPENRGB_API __declspec(dllexport)
 
-RGBColor toRgbColor(int r, int g, int b);
+RGBColor toRGBColorPort(int r, int g, int b);
 
 //EXPORTED API METHODS
 extern "C" OPENRGB_API void init();

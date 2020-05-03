@@ -126,7 +126,7 @@ void setMode(int controller_idx, unsigned char mode) {
  */
 void setLedColor(int controller_idx, int led_idx, int r, int g, int b) {
     RGBController* controller = rgb_controllers.at(controller_idx);
-    RGBColor color = toRgbColor(r, g, b);
+    RGBColor color = toRGBColorPort(r, g, b);
     controller->SetLED(led_idx, color);
 }
 
@@ -141,13 +141,13 @@ void setLedColor(int controller_idx, int led_idx, int r, int g, int b) {
  */
 void setZoneColor(int controller_idx, int zone_idx, int r, int g, int b) {
     RGBController* controller = rgb_controllers.at(controller_idx);
-    RGBColor color = toRgbColor(r, g, b);
+    RGBColor color = toRGBColorPort(r, g, b);
     controller->SetAllZoneLEDs(zone_idx, color);
 }
 
 
 // Directly using ToRGBColor was overflowing(?) the 2 most significant bits.
 // Pre-shifting seems a good temporary solution
-RGBColor toRgbColor(int r, int g, int b) {
+RGBColor toRGBColorPort(int r, int g, int b) {
     return ToRGBColor(r >> 2, g >> 2, b >> 2);
 }
