@@ -110,9 +110,9 @@ void getControllerZones(int controller_idx, SAFEARRAY** zonesArray, SAFEARRAY** 
  * @param[in] controller_idx index of controller in rgb_controllers
  * @param[in] mode mode id
  */
-void setMode(int controller_idx, unsigned char mode) {
+void setMode(int controller_idx, int mode_idx) {
     RGBController* controller = rgb_controllers.at(controller_idx);
-    controller->SetMode(mode);
+    controller->SetMode(mode_idx);
 }
 
 /**
