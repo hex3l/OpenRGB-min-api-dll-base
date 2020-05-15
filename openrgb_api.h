@@ -18,6 +18,8 @@ extern "C" OPENRGB_API BSTR getControllerName(int controller_idx);
 
 extern "C" OPENRGB_API BSTR getControllerDescription(int controller_idx);
 
+extern "C" OPENRGB_API int getControllerLeds(int controller_idx);
+
 extern "C" OPENRGB_API void getControllerZones(int controller_idx, SAFEARRAY** zonesArray, SAFEARRAY** zonesLedsArray);
 
 extern "C" OPENRGB_API void setMode(int controller_idx, int mode_idx);

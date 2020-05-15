@@ -55,6 +55,17 @@ BSTR getControllerDescription(int controller_idx) {
 }
 
 /**
+ * Returns controller's number of leds
+ *
+ * @param[in] controller_idx index of controller in rgb_controllers
+ * @return controller's led number
+ */
+int getControllerLeds(int controller_idx) {
+    RGBController* controller = rgb_controllers.at(controller_idx);
+    return controller->leds.size();
+}
+
+/**
  * Returns controller zone's name and its leds number
  *
  * @param[in] controller_idx index of controller in rgb_controllers
@@ -145,9 +156,11 @@ void setZoneColor(int controller_idx, int zone_idx, int r, int g, int b) {
     controller->SetAllZoneLEDs(zone_idx, color);
 }
 
-
-// Directly using ToRGBColor was overflowing(?) the 2 most significant bits.
-// Pre-shifting seems a good temporary solution
+//If led color is not correctly mapped you can deal with it here.
+//E.G. MSIMysticLight controller was losing the 2 most significant bits.
+// Pre-shifting solved the issue
+//
+//return ToRGBColor(r >> 2, g >> 2, b >> 2);
 RGBColor toRGBColorPort(int r, int g, int b) {
-    return ToRGBColor(r >> 2, g >> 2, b >> 2);
+	return ToRGBColor(r, g, b);
 }
